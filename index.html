@@ -19,16 +19,16 @@
         /* Header */
 /* HEADER – čistý, bez konfliktů */
             #main-header {
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        background: rgba(253, 250, 246, 0.98);
-                        backdrop-filter: blur(20px);
-                        z-index: 1001;
-                        padding: 1rem 0;
-                        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-                        }
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: rgba(253, 250, 246, 0.98);
+                backdrop-filter: blur(20px);
+                z-index: 1001;
+                padding: 0.6rem 0; /* Zmenšeno z 1rem */
+                box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            }
 
                         .main-nav {
                         max-width: 1200px;
@@ -135,9 +135,10 @@
                 }
 
             .mobile-menu.active {
-            transform: translateY(0);
-              opacity: 1;
-            visibility: visible;
+                transform: translateY(0) !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                display: block !important; /* Přidejte pro jistotu */
             }
 
             .mobile-menu ul {
@@ -176,21 +177,38 @@
             }
 
                 /* HERO – obrázek přes celou šířku + výšku okna */
-        .hero {
-        position: relative;
-        height: 100vh;
-        color: #fff;
-        overflow: hidden; 
-        display: flex;
-        align-items: stretch;
-        justify-content: center;
-        background-image: url("fotky/hero.jpg"); /* SEM DEJTE VAŠI FOTKU */
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-        padding-top: 80px;  /* výška headeru – zabrání překrytí obsahu */
-        height: calc(100vh - 80px);  /* uprav výšku podle headeru */
-        }
+/* Úprava Hero sekce */
+.hero {
+    position: relative;
+    display: flex;
+    color: #f1e6e6;
+    align-items: center; /* Vycentrování obsahu vertikálně */
+    justify-content: center;
+    background-image: url("fotky/hero.jpg");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    /* Důležité pro mobil: */
+    min-height: 80vh; 
+    padding-top: 70px; /* Mezera pro fixní header */
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 80px; /* Větší prostor pro menu na mobilu */
+        min-height: 600px; /* Aby fotka nezmizela na malých telefonech */
+        height: auto; /* Zrušíme fixní výšku 100vh */
+    }
+    
+    .hero-content {
+        padding: 2rem 1.5rem !important;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem !important; /* Menší nadpis, aby se netloukl s menu */
+        line-height: 1.2;
+    }
+}
 
         /* tmavý filtr pro lepší čitelnost textu */
         .hero-overlay {
@@ -691,7 +709,9 @@
             }
         }  
         @media (max-width: 768px) {
-        .main-header { padding: 0.8rem 1rem; }
+        .main-header { padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        min-height: auto !important;}
         .hamburger { gap: 3px; }
         .hamburger-line { width: 20px; height: 2px; }
         .mobile-menu { 
@@ -744,12 +764,26 @@
         .hero-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6)); } /* Tmavší overlay pro text */
         }
         @media (max-width: 480px) {
-    #main-header .container {
-        padding: 0 15px;
-    }
-    .logo-title {
-        font-size: 1.2rem; /* Zmenšení písma loga, aby se tam vešlo */
-    }
+        #main-header .container {
+            padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        min-height: auto !important;
+        }
+        .logo-title {
+            font-size: 1.2rem; /* Zmenšení písma loga, aby se tam vešlo */
+        }
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.4rem !important; /* Menší písmo jména */
+            }
+            .logo-subtitle {
+                font-size: 0.45em !important; /* Menší podtitul */
+                padding: 0.1em 0.5em !important;
+            }
+            .hamburger {
+                padding: 4px !important;
+            }
+        }
 }
 
       
@@ -1155,7 +1189,7 @@
             }
         }
         
-        window.addEventListener('resize', adjustHero);
+        /*window.addEventListener('resize', adjustHero);
         function adjustHero() {
         const header = document.getElementById('main-header');
         const hero = document.querySelector('.hero');
@@ -1163,7 +1197,7 @@
         hero.style.paddingTop = headerHeight + 'px';
         hero.style.height = 'calc(100vh - ' + headerHeight + 'px)';
         }
-        adjustHero(); // Spustit ihned
+        adjustHero(); // Spustit ihned*/
 
     </script>
 
