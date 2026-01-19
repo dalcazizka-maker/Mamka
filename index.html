@@ -4,1201 +4,646 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucie Žižková – kuchařka Ostrava Beskydy</title>
-    <style>
-        /* Reset a základ */
-        *{ margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-            line-height: 1.6; 
-            color: #2d1f0f; 
-            background: #fdfaf6; /* krémová */
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        
-        /* Header */
-/* HEADER – čistý, bez konfliktů */
-            #main-header {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                background: rgba(253, 250, 246, 0.98);
-                backdrop-filter: blur(20px);
-                z-index: 1001;
-                padding: 0.6rem 0; /* Zmenšeno z 1rem */
-                box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            }
-
-                        .main-nav {
-                        max-width: 1200px;
-                        margin: 0 auto;
-                        padding: 0 2rem;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        }
-
-            /* Logo */
-            .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 2.2vw, 1.5rem);
-            font-weight: 700;
-            letter-spacing: 0.03em;
-            background: linear-gradient(135deg, #d97706, #f59e0b, #eab308);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            position: relative;
-            }
-
-            .logo-subtitle {
-                font-size: 0.5em;
-                
-                color: white;
-                padding: 0.2em 0.6em;
-                border-radius: 12px;
-                font-weight: 600;
-                letter-spacing: 0.1em;
-                text-transform: uppercase;
-                margin-top: 0.2em;
-                
-            }
-
-            /* Desktop menu */
-            .desktop-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-            }
-
-            .desktop-menu a {
-            color: #2d1f0f;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            }
-
-            .desktop-menu a:hover {
-            color: #d97706;
-            }
-
-            /* Hamburger */
-            .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-            padding: 6px;
-            background: none;
-            border: none;
-            z-index: 1002;
-            }
-
-            .hamburger-line {
-            width: 24px;
-            height: 2px;
-            background: #2d1f0f;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            }
-
-            .hamburger.active .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .hamburger.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-            }
-
-            .hamburger.active .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-            }
-
-            /* Mobilní menu */
-            .mobile-menu {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(253, 250, 246, 0.99);
-                backdrop-filter: blur(20px);
-                padding: 1.5rem 0;
-                box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-                transform: translateY(-10px);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                z-index: 999;
-                }
-
-            .mobile-menu.active {
-                transform: translateY(0) !important;
-                opacity: 1 !important;
-                visibility: visible !important;
-                display: block !important; /* Přidejte pro jistotu */
-            }
-
-            .mobile-menu ul {
-            list-style: none;
-            padding: 0 2rem;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            }
-
-            .mobile-menu a {
-            color: #2d1f0f;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            padding: 0.75rem 0;
-            display: block;
-            border-bottom: 1px solid rgba(217, 119, 6, 0.15);
-            }
-
-            .mobile-menu a:hover {
-            color: #d97706;
-            background: rgba(217, 119, 6, 0.1);
-            padding-left: 1rem;
-            }
-
-            /* Mobil */
-            @media (max-width: 768px) {
-            .desktop-menu {
-                display: none !important;
-            }
-            .hamburger {
-                display: flex;
-            }
-            }
-
-                /* HERO – obrázek přes celou šířku + výšku okna */
-/* Úprava Hero sekce */
-.hero {
-    position: relative;
-    display: flex;
-    color: #f1e6e6;
-    align-items: center; /* Vycentrování obsahu vertikálně */
-    justify-content: center;
-    background-image: url("fotky/hero.jpg");
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    /* Důležité pro mobil: */
-    min-height: 80vh; 
-    padding-top: 70px; /* Mezera pro fixní header */
-}
-
-@media (max-width: 768px) {
-    .hero {
-        padding-top: 80px; /* Větší prostor pro menu na mobilu */
-        min-height: 600px; /* Aby fotka nezmizela na malých telefonech */
-        height: auto; /* Zrušíme fixní výšku 100vh */
-    }
     
-    .hero-content {
-        padding: 2rem 1.5rem !important;
-    }
-
-    .hero-text h1 {
-        font-size: 1.8rem !important; /* Menší nadpis, aby se netloukl s menu */
-        line-height: 1.2;
-    }
-}
-
-        /* tmavý filtr pro lepší čitelnost textu */
-        .hero-overlay {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;               /* místo height: 100vh */
-                        background: linear-gradient(
-                            to bottom,
-                            rgba(0, 0, 0, 0.2),
-                            rgba(0, 0, 0, 0.1)
-                        );
-                        display: flex;
-                        flex-direction: column;
-                        padding-top: 0 !important;   /* ODSTRANÍME padding-top */
-                        }
-
-
-        /* horní menu v hero */
-        .hero-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.5rem 4vw;
-        position: relative;
-        z-index: 2;
-        }
-
-        .hero-logo {
-        font-weight: 700;
-        font-size: 1.2rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        }
-
-        .hero-nav a {
-        color: #fefce8;
-        text-decoration: none;
-        margin-left: 1.5rem;
-        font-size: 0.95rem;
-        font-weight: 500;
-        }
-        .hero-nav a:hover {
-        color: #facc15;
-        }
-
-        /* obsah hero */
-        .hero-content {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem 4vw 4rem;
-        }
-
-        .hero-text {
-        max-width: 700px;
-        text-align: center;
-        }
-
-        .hero-text h1 {
-        font-size: clamp(2.2rem, 4vw, 3.4rem);
-        margin-bottom: 1rem;
-        }
-
-        .hero-motto {
-        font-size: 1.3rem;
-        font-style: italic;
-        margin-bottom: 1.3rem;
-        color: #fef9c3;
-        }
-
-        .hero-sub {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-        color: #e5e7eb;
-        }
-
-        /* tlačítka */
-        .hero-buttons {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-        }
-
-        .btn {
-        padding: 0.9rem 1.8rem;
-        border-radius: 999px;
-        font-weight: 600;
-        text-decoration: none;
-        font-size: 1.5rem;
-        transition: all 0.25s ease;
-        }
-
-        .btn-primary {
-        background: #ea580c;
-        color: #fff;
-        }
-        .btn-primary:hover {
-        background: #c2410c;
-        transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-        border: 2px solid #f97316;
-        color: #fed7aa;
-        background: transparent;
-        }
-        .btn-secondary:hover {
-        background: #f97316;
-        color: #111827;
-        }
-
-        /* spodní proužek s lokalitou */
-        .hero-strip {
-        margin-top: 0.5rem;
-        font-size: 0.9rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: #fde68a;
-        }
-
-        /* responzivita */
-        @media (max-width: 768px) {
-        .hero-header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-        .hero-nav {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .hero-nav a {
-            margin: 0 1rem 0.5rem 0;
-        }
-        .hero-text {
-            text-align: left;
-        }
-        .hero-text h1 {
-            font-size: 2rem;
-        }
-        }
-
-        /* Sekce */
-        .section-title { text-align: center; font-size: 3rem; margin-bottom: 3rem; color: #2d1f0f; }
-        
-  #omne {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f4 100%);
-            }
-
-            .omne-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 450px 1fr;    /* pevná šířka obrázku */
-            gap: 4rem;
-            align-items: center;
-            }
-
-            .omne-image {
-            display: flex;
-            justify-content: center;
-            }
-
-            .omne-image img {
-            width: 100%;
-            max-width: 450px;
-            height: auto;
-            border-radius: 30px;
-            box-shadow: 
-                0 25px 50px rgba(0,0,0,0.15),
-                0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            }
-
-            .omne-image img:hover {
-            transform: translateY(-10px);
-            box-shadow: 
-                0 35px 70px rgba(0,0,0,0.2),
-                0 10px 30px rgba(0,0,0,0.15);
-            }
-
-            .omne-text {
-            text-align: left;
-            }
-
-            .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 4.5vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 2rem;
-            color: #1f2937;
-            }
-
-            .omne-text p {
-            font-size: 1.15rem;
-            line-height: 1.75;
-            color: #374151;
-            margin-bottom: 2rem;
-            }
-
-            .omne-text strong {
-            color: #d97706;
-            }
-
-            /* Highlighty */
-            .omne-highlights {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-            }
-
-            .highlight {
-            text-align: center;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            }
-
-            .highlight:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-            }
-
-            .highlight-number {
-            display: block;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #d97706;
-            margin-bottom: 0.3rem;
-            }
-
-            .highlight span:last-child {
-            font-size: 0.9rem;
-            color: #6b7280;
-            font-weight: 500;
-            }
-
-            .omne-final {
-            font-style: italic;
-            font-size: 1.1rem;
-            color: #4b5563;
-            border-left: 4px solid #f3f4f6;
-            padding-left: 2rem;
-            margin-top: 1rem;
-            }
-
-            /* MOBIL */
-            @media (max-width: 900px) {
-            .omne-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                text-align: center;
-            }
-            
-            .omne-text {
-                order: 2;
-            }
-            
-            .omne-image {
-                order: 1;
-            }
-            
-            .omne-image img {
-                max-width: 300px;
-            }
-            
-            .omne-highlights {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1rem;
-            }
-            }
-            @media (max-width: 600px) {
-    .omne-highlights {
-        grid-template-columns: 1fr; /* Čísla budou pod sebou */
-        text-align: center;
-        gap: 1.5rem;
-    }
-}
-
-        
-        /* Služby */
-        #sluzby { background: #fdfaf6;
-        padding: 6rem 0; }
-
-
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
-        .service-card { 
-            background: white; 
-            padding: 2rem; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            text-align: center; 
-            transition: transform 0.3s; 
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        .service-card > *:last-child {  /* Poslední child = button */
-            margin-top: auto;  /* Tlačí tlačítko na konec */
-        }
-        .service-more-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: #d97706;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: auto;  /* Flex push na konec */
-            transition: all 0.3s ease;
-        }
-
-        .service-more-btn:hover {
-            background: #b45309;
-            transform: translateY(-2px);
-        }
-        .service-card:hover { transform: translateY(-10px); }
-        .service-card button{width: 100%; padding: 1.2rem; background: #d97706; color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer;}
-       .service-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1rem;
-            }
-        .service-icon-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: none; /* Odstraňuje zelený čtvereček */
-            border-radius: 5px;
-        }
-
-        .service-card h3 { font-size: 1.8rem; margin-bottom: 1rem; }
-        /* Off-canvas panel - ŠIRŠÍ NA DESKTOPU */
-        .offcanvas-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
-        .offcanvas-panel { 
-            position: fixed; 
-            top: 0; 
-            right: 0;  /* Změna z -100% na 0 pro lepší animaci */
-            width: 70%;  /* Širší výchozí - pro desktop */
-            max-width: 1000px;  /* Nové max pro šířku na velkých obrazovkách */
-            height: 100%; 
-            background: white; 
-            box-shadow: -5px 0 15px rgba(0,0,0,0.2); 
-            transition: transform 0.3s ease; 
-            z-index: 1001; 
-            overflow-y: auto;
-            transform: translateX(100%);  /* Začíná schovaný */
-        }
-        .offcanvas-panel.open { transform: translateX(0); }  /* Otevřený stav */
-        .offcanvas-header { padding: 20px; background: #d97706; color: white; display: flex; justify-content: space-between; align-items: center; }
-        .offcanvas-header h2 { margin: 0; }
-        .close-btn { background: none; border: none; color: white; font-size: 2em; cursor: pointer; }
-        .offcanvas-content { padding: 20px; }
-        .offcanvas-content p { margin-bottom: 15px; }
-        .offcanvas-menu-example { background: #f9f9f9; padding: 15px; border-radius: 5px; margin: 15px 0; }
-        
-
-
-        /* Timeline */
-        /* Timeline - vertikální, kroky pod sebou */
-#jak-probihasp { background: #f8f4ed; padding: 6rem 0; }
-.timeline { 
-    max-width: 800px; 
-    margin: 0 auto; 
-    position: relative; 
-}
-.timeline::before { 
-    content: ''; 
-    position: absolute; 
-    left: 30px; 
-    top: 0; 
-    bottom: 0; 
-    width: 4px; 
-    background: linear-gradient(to bottom, #d97706, #f59e0b); 
-    z-index: 0; 
-}
-.timeline-item { 
-    display: flex; 
-    align-items: flex-start; 
-    margin-bottom: 4rem; 
-    position: relative; 
-    z-index: 1; 
-}
-.timeline-number { 
-    width: 60px; 
-    height: 60px; 
-    background: linear-gradient(135deg, #d97706, #f59e0b); 
-    color: white; 
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-weight: bold; 
-    font-size: 1.5rem; 
-    flex-shrink: 0; 
-    box-shadow: 0 5px 15px rgba(217, 119, 6, 0.4); 
-}
-.timeline-content { 
-    flex: 1; 
-    padding: 2rem 2.5rem; 
-    background: white; 
-    border-radius: 20px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-    margin-left: 1rem; 
-    transform: translateY(0); 
-    transition: all 0.3s ease; 
-}
-.timeline-content:hover { 
-    transform: translateX(10px); 
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15); 
-}
-.timeline-content h3 { 
-    color: #2d1f0f; 
-    margin-bottom: 0.5rem; 
-    font-size: 1.5rem; 
-}
-.timeline-content p { 
-    color: #6b7280; 
-    margin-bottom: 0; 
-}
-
-
-
-        /* Galerie */
-        #galerie { background: #fdfaf6; }
-        .filters { text-align: center; margin-bottom: 2rem; }
-        .filter-btn { background: none; border: none; padding: 0.5rem 1.5rem; margin: 0 0.5rem; cursor: pointer; border-radius: 25px; font-weight: 500; }
-        .filter-btn.active { background: #d97706; color: white; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .gallery-item { aspect-ratio: 4/3; background: #22c55e; border-radius: 15px; transition: all 0.3s; position: relative; overflow: hidden; }
-        .gallery-item:hover { transform: scale(1.05); }
-        
-        /* Kontakt */
-        #kontakt { background: #f8f4ed; 
-        padding: 6rem 0;}
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-        .contact-info h2 { font-size: 2.5rem; margin-bottom: 2rem; }
-        .contact-form input, .contact-form textarea, .contact-form select { 
-            width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 1rem; 
-        }
-        .contact-form button { width: 100%; padding: 1.2rem; background: #d97706; color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; }
-        
-        /* Footer */
-        footer { background: #2d1f0f; color: white; text-align: center; padding: 2rem 0; }
-        
-        /* Mobil */
-        @media (max-width: 768px) {
-            .hero-content { flex-direction: column; text-align: center; gap: 2rem; }
-            .two-col, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .timeline::before { left: 20px; }
-            .timeline-item { flex-direction: column; }
-            .timeline-item:nth-child(odd) { flex-direction: column; }
-            .timeline-number { left: 20px; }
-            .timeline-content { margin: 2rem 0 0 0; }
-            nav ul { flex-direction: column; gap: 1rem; }
-        }
-        @media (max-width: 768px) {
-            .container { padding: 0 15px; }
-            body, html { width: 100%; overflow-x: hidden; }
-            .omne-content { grid-template-columns: 1fr !important; }
-            .main-nav { padding: 0 1rem; }
-            }
-        @media (max-width: 480px) { .container { padding: 0 10px; } }
-        /* Mobil - ještě čistější */
-        @media (max-width: 768px) {
-            .timeline::before { left: 25px; }
-            .timeline-number { width: 50px; height: 50px; font-size: 1.2rem; }
-            .timeline-content { 
-                margin-left: 0.5rem; 
-                padding: 1.5rem 2rem; 
-               } }
-                /* Mobilní responzivita - ÚZKÝ na mobilu */
-        @media (max-width: 768px) {
-            .offcanvas-panel { 
-                width: 100%; 
-                max-width: none; 
-            }
-        }
-        
-        /* Tablet - Střední šířka */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .offcanvas-panel { 
-                width: 85%; 
-                max-width: 600px; 
-            }
-        }  
-        @media (max-width: 768px) {
-        .main-header { padding-top: 0.5rem !important;
-        padding-bottom: 0.5rem !important;
-        min-height: auto !important;}
-        .hamburger { gap: 3px; }
-        .hamburger-line { width: 20px; height: 2px; }
-        .mobile-menu { 
-            padding: 1rem 0; 
-            background: rgba(253, 250, 246, 0.98); 
-            backdrop-filter: blur(20px);
-            top: 100%; /* Pod headerem */
-        }
-        .mobile-menu ul { padding: 0 1.5rem; gap: 0.5rem; }
-        .mobile-menu a { 
-            font-size: 1.1rem; 
-            padding: 1rem 0; 
-            border-bottom: 1px solid rgba(217, 119, 6, 0.2);
-            transition: all 0.3s ease;
-        }
-        .mobile-menu a:hover { 
-            color: #d97706; 
-            padding-left: 1rem; 
-            background: rgba(217, 119, 6, 0.05);
-        }
-        }
-        @media (max-width: 768px) {
-        .hero {
-        height: 80dvh; /* d stands for dynamic - lépe reaguje na lišty prohlížeče */
-        min-height: 500px;
-    }
-        .hero-content { 
-            flex-direction: column; 
-            text-align: center; 
-            padding: 1rem 1.5rem 2rem; 
-        }
-        .hero-text { max-width: 100%; }
-        .hero-text h1 { 
-            font-size: clamp(1.8rem, 5vw, 2.5rem); 
-            margin-bottom: 1rem; 
-        }
-        .hero-motto { 
-            font-size: 1.1rem; 
-            margin-bottom: 1rem; 
-            color: #fefce8 !important; /* Světlejší */
-        }
-        .hero-sub { color: #f3f4f6 !important; font-size: 0.95rem; }
-        .hero-buttons { flex-direction: column; gap: 0.8rem; }
-        .btn { 
-            width: 100%; 
-            max-width: 280px; 
-            padding: 0.9rem 1.5rem; 
-            font-size: 1rem;
-        }
-        .hero-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6)); } /* Tmavší overlay pro text */
-        }
-        @media (max-width: 480px) {
-        #main-header .container {
-            padding-top: 0.5rem !important;
-        padding-bottom: 0.5rem !important;
-        min-height: auto !important;
-        }
-        .logo-title {
-            font-size: 1.2rem; /* Zmenšení písma loga, aby se tam vešlo */
-        }
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 1.4rem !important; /* Menší písmo jména */
-            }
-            .logo-subtitle {
-                font-size: 0.45em !important; /* Menší podtitul */
-                padding: 0.1em 0.5em !important;
-            }
-            .hamburger {
-                padding: 4px !important;
-            }
-        }
-}
-
-      
-
-
-    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+    <style>
+        /* ==========================================================================
+           1. PROMĚNNÉ A RESET
+           ========================================================================== */
+        :root {
+            --primary: #d97706;
+            --primary-hover: #b45309;
+            --bg-cream: #fdfaf6;
+            --bg-sand: #f8f4ed;
+            --text-dark: #2d1f0f;
+            --text-muted: #6b7280;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            color: var(--text-dark); 
+            background: var(--bg-cream);
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        img { max-width: 100%; height: auto; border-radius: 15px; }
+        a { text-decoration: none; transition: var(--transition); }
+        ul { list-style: none; }
+
+        /* ==========================================================================
+           2. HEADER (ZMENŠENÝ A FIXNÍ)
+           ========================================================================== */
+        #main-header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(253, 250, 246, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1001;
+            padding: 0.6rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .main-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            color: var(--primary);
+        }
+
+        .logo-subtitle {
+            font-size: 0.45em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .desktop-menu { display: flex; gap: 2rem; }
+        .desktop-menu a { color: var(--text-dark); font-weight: 500; }
+        .desktop-menu a:hover { color: var(--primary); }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+
+        .hamburger span { width: 25px; height: 2px; background: var(--text-dark); }
+
+        /* ==========================================================================
+           3. HERO SEKCE
+           ========================================================================== */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            padding-top: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("fotky/hero.jpg") center/cover no-repeat;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content { max-width: 850px; padding: 2rem; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 1.5rem; line-height: 1.1; }
+        .hero p { font-size: 1.25rem; margin-bottom: 2.5rem; color: #f3f4f6; }
+
+        .btn { display: inline-block; padding: 0.9rem 2.2rem; border-radius: 50px; font-weight: 600; margin: 0.5rem; transition: var(--transition); }
+        .btn-primary { background: var(--primary); color: white; border: 2px solid var(--primary); }
+        .btn-primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+        .btn-secondary { border: 2px solid white; color: white; }
+        .btn-secondary:hover { background: white; color: var(--text-dark); }
+
+        /* ==========================================================================
+           4. O MNĚ
+           ========================================================================== */
+        #omne { padding: 6rem 0; background: white; }
+        .omne-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: center; }
+        .omne-image { position: relative; }
+        .omne-image img { box-shadow: 20px 20px 0px var(--bg-sand); }
+        
+        .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--text-dark); }
+        .omne-text p { margin-bottom: 1.2rem; font-size: 1.05rem; }
+
+        .highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+        .highlight-item { background: var(--bg-sand); padding: 1.5rem 1rem; border-radius: 15px; text-align: center; }
+        .highlight-item strong { display: block; font-size: 1.4rem; color: var(--primary); font-family: 'Playfair Display', serif; }
+        .highlight-item span { font-size: 0.85rem; text-transform: uppercase; font-weight: 600; }
+
+        /* ==========================================================================
+           5. SLUŽBY
+           ========================================================================== */
+        #sluzby { padding: 6rem 0; background: var(--bg-cream); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .service-card { background: white; padding: 2.5rem 2rem; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: var(--transition); }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+        .service-icon { width: 55px; height: 55px; margin: 0 auto 1.5rem; opacity: 0.9; }
+        .service-card h3 { margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
+        .service-more-btn { margin-top: 1.5rem; padding: 0.6rem 1.5rem; background: var(--bg-sand); border: none; border-radius: 10px; cursor: pointer; font-weight: 600; color: var(--primary); transition: var(--transition); }
+        .service-more-btn:hover { background: var(--primary); color: white; }
+
+        /* ==========================================================================
+           6. JAK PROBÍHÁ SPOLUPRÁCE
+           ========================================================================== */
+        #jak-probihasp { padding: 6rem 0; background: var(--bg-sand); }
+        .timeline { max-width: 850px; margin: 4rem auto 0; position: relative; }
+        .timeline::before { content: ''; position: absolute; left: 30px; top: 0; bottom: 0; width: 2px; background: var(--primary); opacity: 0.2; }
+        .timeline-item { display: flex; gap: 2.5rem; margin-bottom: 3rem; position: relative; }
+        .timeline-number { width: 60px; height: 60px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; flex-shrink: 0; z-index: 2; box-shadow: 0 5px 15px rgba(217,119,6,0.3); }
+        .timeline-content { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.04); width: 100%; }
+        .timeline-content h3 { margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; color: var(--primary); }
+
+        /*galerie
+        /* Galerie */
+            .filter-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-bottom: 3rem;
+                flex-wrap: wrap;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1.8rem;
+                border: 2px solid var(--primary);
+                background: transparent;
+                color: var(--primary);
+                border-radius: 50px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .filter-btn.active, .filter-btn:hover {
+                background: var(--primary);
+                color: white;
+            }
+
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 20px;
+            }
+
+            .gallery-item {
+                position: relative;
+                border-radius: 20px;
+                overflow: hidden;
+                aspect-ratio: 4/3;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+                transition: transform 0.4s ease, opacity 0.4s ease;
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .gallery-item:hover img {
+                transform: scale(1.1);
+            }
+
+            /* Animace filtru */
+            .gallery-item.hide {
+                transform: scale(0.8);
+                opacity: 0;
+                position: absolute;
+                pointer-events: none;
+            }
+
+        /* ==========================================================================
+           7. KONTAKTNÍ FORMULÁŘ
+           ========================================================================== */
+        #kontakt { padding: 6rem 0; background: white; }
+        .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; }
+        .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .contact-details { margin-top: 2rem; }
+        .contact-details p { margin-bottom: 1rem; font-size: 1.1rem; }
+
+        .contact-form { background: var(--bg-sand); padding: 3rem; border-radius: 25px; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
+        .contact-form input, .contact-form select, .contact-form textarea { 
+            width: 100%; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 12px; font-family: inherit; font-size: 1rem; 
+        }
+        .contact-form textarea { height: 120px; resize: none; }
+        .submit-btn { width: 100%; padding: 1.2rem; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: var(--transition); }
+        .submit-btn:hover { background: var(--primary-hover); transform: translateY(-2px); }
+
+        /* ==========================================================================
+           8. MOBILNÍ MENU & FOOTER
+           ========================================================================== */
+        .mobile-menu { position: fixed; top: 0; right: -100%; width: 80%; max-width: 300px; height: 100%; background: white; z-index: 2000; padding: 5rem 2rem; transition: var(--transition); box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
+        .mobile-menu.open { right: 0; }
+        .mobile-menu ul { display: flex; flex-direction: column; gap: 2rem; }
+        .mobile-menu a { font-size: 1.3rem; color: var(--text-dark); font-weight: 600; font-family: 'Playfair Display', serif; }
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; z-index: 1500; backdrop-filter: blur(3px); }
+
+        footer { background: var(--text-dark); color: white; padding: 4rem 0; text-align: center; }
+        footer p { opacity: 0.7; font-size: 0.9rem; }
+
+        /* ==========================================================================
+           9. RESPONZIVITA
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .omne-grid, .contact-container { grid-template-columns: 1fr; gap: 3rem; }
+            .omne-image { order: 2; max-width: 500px; margin: 0 auto; }
+            .omne-text { order: 1; text-align: center; }
+            .contact-info { text-align: center; }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-menu { display: none; }
+            .hamburger { display: flex; }
+            .hero h1 { font-size: 2.4rem; }
+            .timeline::before { left: 20px; }
+            .timeline-number { width: 45px; height: 45px; font-size: 1rem; }
+            .highlights { grid-template-columns: 1fr; }
+            .contact-form { padding: 2rem 1.5rem; }
+        }
+
+        /*offcanvas*/
+        /* Off-canvas Služby */
+.service-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 2000;
+    display: none;
+}
+
+.service-offcanvas {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Schované vpravo */
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    background: white;
+    z-index: 2001;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+}
+
+.service-offcanvas.open {
+    right: 0;
+}
+
+.offcanvas-header {
+    padding: 1.5rem 2rem;
+    background: var(--bg-sand);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.offcanvas-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.close-detail {
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: var(--text-dark);
+    line-height: 1;
+}
+
+.offcanvas-body {
+    padding: 2rem;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.offcanvas-body p {
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.offcanvas-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid #eee;
+}
+    </style>
 </head>
 <body>
-    <!-- Header -->
-<!-- HEADER – opravený bez konfliktů -->
+
 <header id="main-header">
-  <nav class="main-nav">
-    <a href="/" class="logo">
-      Lucie Žižková
-      <span class="logo-subtitle">profikuchařka Ostrava</span>
-    </a>
-    
-    <!-- Desktop menu -->
-    <ul class="desktop-menu">
-      <li><a href="#omne">O mně</a></li>
-      <li><a href="#sluzby">Služby</a></li>
-      <li><a href="#jak-probihasp">Jak probíhá spolupráce</a></li>
-      <li><a href="#galerie">Galerie</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
-    </ul>
-    
-    <!-- Hamburger -->
-    <button class="hamburger" onclick="toggleMobileMenu()">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-  </nav>
-  
-  <!-- Mobilní menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <ul>
-      <li><a href="#omne">O mně</a></li>
-      <li><a href="#sluzby">Služby</a></li>
-      <li><a href="#jak-probihasp">Jak probíhá spolupráce</a></li>
-      <li><a href="#galerie">Galerie</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
-    </ul>
-  </div>
+    <nav class="main-nav">
+        <a href="#" class="logo">
+            Lucie Žižková
+            <span class="logo-subtitle">profikuchařka Ostrava</span>
+        </a>
+        <ul class="desktop-menu">
+            <li><a href="#omne">O mně</a></li>
+            <li><a href="#sluzby">Služby</a></li>
+            <li><a href="#jak-probihasp">Spolupráce</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+        <button class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
 </header>
 
+<div class="mobile-menu" id="mobileMenu">
+    <ul>
+        <li><a href="#omne" onclick="toggleMenu()">O mně</a></li>
+        <li><a href="#sluzby" onclick="toggleMenu()">Služby</a></li>
+        <li><a href="#jak-probihasp" onclick="toggleMenu()">Spolupráce</a></li>
+        <li><a href="#kontakt" onclick="toggleMenu()">Kontakt</a></li>
+    </ul>
+</div>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-
-    <!-- Hero -->
-    <!-- HERO SEKCE -->
-        <section id="hero" class="hero">
-        <div class="hero-overlay">
-            
-
-            <div class="hero-content">
-            <div class="hero-text">
-                <h1>Lucie Žižková – kuchařka s 30letou praxí</h1>
-                <p class="hero-motto">Vařím s láskou a z vašeho domova či firmy vytvořím prvotřídní restauraci.</p>
-                <p class="hero-sub">
-                Catering, rodinné oslavy, firemní akce a výpomoc v kuchyni v okolí Ostravy, Frýdku‑Místku a Beskyd,
-                obvykle do 40 osob.
-                </p>
-                <div class="hero-buttons">
-                <a href="#kontakt" class="btn btn-primary">Poptejte termín</a>
-                <a href="#sluzby" class="btn btn-secondary">Podívat se na služby</a>
-                </div>
-                <p class="hero-strip">
-                Ostrava • Frýdek‑Místek • Beskydy • Soukromé i firemní akce
-                </p>
-            </div>
-            </div>
-        </div>
-        </section>
-
-
-    <!-- O mně -->
-        <section id="omne">
-            <div class="omne-content">
-                <!-- Levý sloupec – OB RÁZEK -->
-                <div class="omne-image">
-                <img src="fotky/portret-lucie.jpg" 
-                    alt="Lucie Žižková portrét kuchařka Ostrava Beskydy" 
-                    loading="lazy" 
-                    width="450" 
-                    height="550">
-                </div>
-                
-                <!-- Pravý sloupec – TEXT -->
-                <div class="omne-text">
-                <h2 class="section-title">O mně</h2>
-                <p>
-                    Jsem <strong>kuchařka s více než 30letou praxí</strong>, srdcem z Beskyd, 
-                    která věří, že jídlo je lék. Gastronomii mám v genech – vařečku jsem 
-                    symbolicky převzala od svých rodičů a už jako dítě jsem fascinovaně 
-                    sledovala jejich kuchařské umění.
-                </p>
-                
-                <div class="omne-highlights">
-                    <div class="highlight">
-                    <span class="highlight-number">30+</span>
-                    <span>let praxe</span>
-                    </div>
-                    <div class="highlight">
-                    <span class="highlight-number">Beskydy</span>
-                    <span>srdce v horách</span>
-                    </div>
-                    <div class="highlight">
-                    <span class="highlight-number">lokální</span>
-                    <span> suroviny</span>
-                    </div>
-                </div>
-                
-                <p class="omne-final">
-                    Spojuji úctu k tradiční české i zahraniční kuchyni s moderními trendy 
-                    a důrazem na kvalitní, poctivé suroviny.
-                </p>
-                </div>
-            </div>
-    </section>
-
-
-    <!-- Služby -->
-    <section id="sluzby" class="container">
-        <h2 class="section-title">Služby</h2>
-        <div class="services-grid">
-
-            <article class="service-card">
-                <div class="service-icon">
-                    <img src="icons/cake.png" alt="Rodinné oslavy" class="service-icon-img">
-                </div>
-                <h3>Rodinné oslavy</h3>
-                <p>Rodinná oslava si zaslouží stůl plný skvělého jídla a pití, které potěší všechny generace.</p>
-                <button class="service-more-btn" onclick="openOffcanvas('rodinne')">Více info</button>
-            </article>
-
-            <article class="service-card">
-                <div class="service-icon">
-                    <img src="icons/group.png" alt="Teambuildingy a firemní akce" class="service-icon-img">
-                </div>
-                <h3>Teambuildingy a firemní akce</h3>
-                <p>Teambuildingové pohoštění v duchu zdravého životního stylu...</p>
-                <button class="service-more-btn" onclick="openOffcanvas('firemni')">Více info</button>
-            </article>
-        
-
-            <article class="service-card">
-                <div class="service-icon">
-                    <img src="icons/spatula.png" alt="Zaměstnanecké stravování" class="service-icon-img">
-                </div>
-                <h3>Zaměstnanecké stravování</h3>
-                <p>Moderní stravování, které podpoří soustředění...</p>
-                <button class="service-more-btn" onclick="openOffcanvas('firemni')">Více info</button>
-            </article>
-            <article class="service-card">
-                <div class="service-icon">
-                    <img src="icons/healthy.png" alt="Studená Kuchyně" class="service-icon-img">
-                </div>
-                <h3>Studená Kuchyně</h3>
-                <p>Zaměřujeme se na jídla, která podporují soustředění a nezpůsobují únavu po obědě</p>
-                <button class="service-more-btn" onclick="openOffcanvas('firemni')">Více info</button>
-            </article>
-            <article class="service-card">
-                <div class="service-icon">
-                    <img src="icons/handshake.png" alt="B2B Spolupráce" class="service-icon-img">
-                </div>
-                <h3>B2B Spolupráce (IČO)</h3>
-                <p>Nabízím své zkušenosti také restauracím, cateringovým společnostem a firmám </p>
-                <button class="service-more-btn" onclick="openOffcanvas('firemni')">Více info</button>
-            </article>
-        </div>    
-            <!-- Další služby... -->
-        
-    </section>
-        <!-- Off-canvas overlay -->
-    <div id="offcanvasOverlay" class="offcanvas-overlay" onclick="closeOffcanvas()"></div>
-
-    <!-- Off-canvas panel -->
-    <div id="offcanvasPanel" class="offcanvas-panel">
-        <header class="offcanvas-header">
-            <h2 id="offcanvasTitle">Detail služby</h2>
-            <button class="close-btn" onclick="closeOffcanvas()">&times;</button>
-        </header>
-        <div id="offcanvasContent" class="offcanvas-content">
-            <!-- Obsah se naplní JS -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Vařím s láskou a vytvářím zážitky přímo u vás</h1>
+        <p>Z vašeho domova či firmy vytvořím prvotřídní restauraci. Catering a rodinné oslavy v okolí Ostravy a Beskyd.</p>
+        <div class="hero-btns">
+            <a href="#kontakt" class="btn btn-primary">Poptejte termín</a>
+            <a href="#sluzby" class="btn btn-secondary">Nabídka služeb</a>
         </div>
     </div>
-    <!-- Timeline -->
-   <section id="jak-probihasp" class="container">
-    <h2 class="section-title">Jak spolupráce probíhá</h2>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-number">1</div>
-            <div class="timeline-content">
-                <h3>První setkání – seznámení a vize</h3>
-                <p>Na první schůzce probereme vaši představu o akci, počet hostů, rozpočet i oblíbené recepty. Zjistím všechna vaše přání a potřeby.</p>
-            </div>
+</section>
+
+<section id="omne" class="container">
+    <div class="omne-grid">
+        <div class="omne-image">
+            <img src="fotky/portret-lucie.jpg" alt="Lucie Žižková kuchařka">
         </div>
-        <div class="timeline-item">
-            <div class="timeline-number">2</div>
-            <div class="timeline-content">
-                <h3>Návrh menu a harmonogramu</h3>
-                <p>Vaše požadavky přenesu do individuálního menu a harmonogramu zohledňujícího chutě, alergie i dietní omezení. Návrh vám zašlu e‑mailem.</p>
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-number">3</div>
-            <div class="timeline-content">
-                <h3>Finální domluva (14 dní před akcí)</h3>
-                <p>Doladíme detaily, probereme pro a proti. Od této chvíle přebírám organizaci – normování porcí, objednávky u lokálních dodavatelů.</p>
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-number">4</div>
-            <div class="timeline-content">
-                <h3>Realizace a servis</h3>
-                <p>Den před akcí nakoupím suroviny, v den akce vařím a servisuji (sama nebo s týmem). Vy se věnujete hostům bez starostí.</p>
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-number">5</div>
-            <div class="timeline-content">
-                <h3>Úklid a zpětná vazba</h3>
-                <p>Den po akci úklid, společné zhodnocení a prostor pro doporučení do budoucna. Vaše spokojenost je mým největším úspěchem.</p>
+        <div class="omne-text">
+            <h2 class="section-title">O mně</h2>
+            <p>Jsem <strong>kuchařka s více než 30letou praxí</strong>, srdcem z Beskyd, která věří, že jídlo je lék. Gastronomii mám v genech – vařečku jsem symbolicky převzala od svých rodičů.</p>
+            <p>Spojuji úctu k tradiční české i zahraniční kuchyni s moderními trendy a důrazem na kvalitní, poctivé suroviny od lokálních dodavatelů.</p>
+            <div class="highlights">
+                <div class="highlight-item"><strong>30+</strong><span>let praxe</span></div>
+                <div class="highlight-item"><strong>Beskydy</strong><span>srdce v horách</span></div>
+                <div class="highlight-item"><strong>Lokální</strong><span>suroviny</span></div>
             </div>
         </div>
     </div>
 </section>
 
-
-    <!-- Galerie -->
-    <section id="galerie" class="container">
-        <h2 class="section-title">Galerie</h2>
-        <div class="filters">
-            <button class="filter-btn active" data-filter="vse">Vše</button>
-            <button class="filter-btn" data-filter="oslavy">Rodinné oslavy</button>
-            <button class="filter-btn" data-filter="firemni">Firemní akce</button>
-        </div>
-        <div class="gallery-grid">
-            <div class="gallery-item" data-category="oslavy"></div>
-            <div class="gallery-item" data-category="firemni"></div>
-            <!-- Další... -->
-        </div>
-    </section>
-
-    <!-- Kontakt -->
-    <section id="kontakt" class="container">
-        <h2 class="section-title">Kontakt</h2>
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h2>Napište mi</h2>
-                <p>Lucie Žižková<br>Telefon: +420 xxx xxx xxx<br>E‑mail: info@luciezizkova.cz<br>IČO: xxxxxxxxx</p>
+<section id="sluzby">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center;">Nabízené služby</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="icons/cake.png" class="service-icon" alt="Oslavy">
+                <h3>Rodinné oslavy</h3>
+                <p>Rodinná oslava si zaslouží stůl plný skvělého jídla a pití, které potěší všechny generace.</p>
+                <button class="service-more-btn" onclick="openServiceDetail('rodinne')">Více informací</button>
             </div>
-            <form class="contact-form">
-                <input type="text" placeholder="Jméno" required>
-                <input type="email" placeholder="E‑mail" required>
-                <input type="tel" placeholder="Telefon">
+            <div class="service-card">
+                <img src="icons/group.png" class="service-icon" alt="Firemní akce">
+                <h3>Firemní akce</h3>
+                <p>Teambuildingové pohoštění v duchu zdravého životního stylu a moderní gastronomie.</p>
+                <button class="service-more-btn" onclick="openServiceDetail('firemni')">Více informací</button>
+            </div>
+            <div class="service-card">
+                <img src="icons/spatula.png" class="service-icon" alt="Zaměstnanci">
+                <h3>Zaměstnanecké stravování</h3>
+                <p>Moderní stravování, které podpoří soustředění a výkon vašich zaměstnanců bez únavy.</p>
+                <button class="service-more-btn" onclick="openServiceDetail('zamestnanci')">Více informací</button>
+            </div>
+            <div class="service-card">
+                <img src="icons/healthy.png" class="service-icon" alt="Studená kuchyně">
+                <h3>Studená Kuchyně</h3>
+                <p>Lehká a svěží jídla připravená s důrazem na čerstvost a vyvážené chutě.</p>
+                <button class="service-more-btn" onclick="openServiceDetail('studena')">Více informací</button>
+            </div>
+            <div class="service-card">
+                <img src="icons/handshake.png" class="service-icon" alt="B2B">
+                <h3>B2B Spolupráce</h3>
+                <p>Nabízím své zkušenosti restauracím, cateringovým společnostem a firmám na IČO.</p>
+                <button class="service-more-btn" onclick="openServiceDetail('b2b')">Více informací</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="jak-probihasp">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center;">Jak spolupráce probíhá</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-number">1</div>
+                <div class="timeline-content">
+                    <h3>První setkání a vize</h3>
+                    <p>Probereme vaši představu, počet hostů, rozpočet i oblíbené chutě.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-number">2</div>
+                <div class="timeline-content">
+                    <h3>Návrh menu a harmonogramu</h3>
+                    <p>Vytvořím individuální menu zohledňující diety, alergie i sezónnost surovin.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-number">3</div>
+                <div class="timeline-content">
+                    <h3>Finální domluva</h3>
+                    <p>Doladíme detaily a já přebírám veškerou organizaci a nákup surovin.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-number">4</div>
+                <div class="timeline-content">
+                    <h3>Realizace a servis</h3>
+                    <p>V den akce uvařím a zajistím servis. Vy se věnujete jen svým hostům.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-number">5</div>
+                <div class="timeline-content">
+                    <h3>Úklid a zpětná vazba</h3>
+                    <p>Po akci zajistím úklid a společně zhodnotíme průběh celé události.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="galerie" class="container" style="padding: 6rem 0;">
+    <h2 class="section-title" style="text-align: center;">Galerie mých prací</h2>
+    
+    <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterGallery('all', this)">Vše</button>
+        <button class="filter-btn" onclick="filterGallery('oslavy', this)">Rodinné oslavy</button>
+        <button class="filter-btn" onclick="filterGallery('akce', this)">Firemní akce</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item oslavy">
+            <img src="fotky/oslava1.jpg" alt="Catering na oslavě">
+        </div>
+        <div class="gallery-item akce">
+            <img src="fotky/akce1.jpg" alt="Firemní raut">
+        </div>
+        <div class="gallery-item oslavy">
+            <img src="fotky/oslava2.jpg" alt="Detail jídla">
+        </div>
+        <div class="gallery-item akce">
+            <img src="fotky/akce2.jpg" alt="Teambuildingové pohoštění">
+        </div>
+        </div>
+</section>
+<section id="kontakt" class="container">
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Pojďme se domluvit</h2>
+            <p>Máte zájem o catering nebo výpomoc v kuchyni? Napište mi a já se vám ozvu zpět s návrhem.</p>
+            <div class="contact-details">
+                <p><strong>Email:</strong> info@luciezizkova.cz</p>
+                <p><strong>Lokalita:</strong> Ostrava, Frýdek‑Místek, Beskydy</p>
+                <p><strong>IČO:</strong> Spolupráce na IČO možná</p>
+            </div>
+        </div>
+        <form class="contact-form">
+            <div class="form-group">
+                <label>Vaše jméno</label>
+                <input type="text" placeholder="Jan Novák" required>
+            </div>
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" placeholder="vas@email.cz" required>
+            </div>
+            <div class="form-group">
+                <label>Typ akce</label>
                 <select>
                     <option>Rodinná oslava</option>
-                    <option>Firemní akce</option>
-                    <!-- ... -->
+                    <option>Firemní akce / Teambuilding</option>
+                    <option>B2B Spolupráce</option>
+                    <option>Jiné</option>
                 </select>
-                <input type="date">
-                <textarea placeholder="Vaše představa..."></textarea>
-                <button type="submit">Odeslat poptávku</button>
-            </form>
-        </div>
-    </section>
+            </div>
+            <div class="form-group">
+                <label>Vaše zpráva</label>
+                <textarea placeholder="Popište mi prosím vaši představu (termín, počet osob...)"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Odeslat poptávku</button>
+        </form>
+    </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Lucie Žižková. Spolupráce B2B na IČO možná.</p>
-        </div>
-    </footer>
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Lucie Žižková. Všechna práva vyhrazena.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Ostrava • Frýdek‑Místek • Beskydy</p>
+    </div>
+</footer>
 
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-            });
-        });
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('overlay');
+        menu.classList.toggle('open');
+        overlay.style.display = menu.classList.contains('open') ? 'block' : 'none';
+        document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : 'auto';
+    }
 
-        // Galerie filtry (základ)
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-                
-                        function toggleMobileMenu() {
-            document.querySelector('.hamburger').classList.toggle('active');
-            document.getElementById('mobileMenu').classList.toggle('active');
+    // Smooth scroll pro odkazy
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if(target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
+        });
+    });
+    //offcanvas
+    // Data pro detaily služeb
+const serviceData = {
+    'rodinne': {
+        title: 'Rodinné oslavy',
+        text: 'Zajistím kompletní gastronomický servis pro vaše narozeniny, výročí nebo křtiny. Menu sestavíme společně tak, aby chutnalo dětem i prarodičům. Vařím z čerstvých surovin přímo u vás, nebo jídlo dovezu připravené.'
+    },
+    'firemni': {
+        title: 'Firemní akce',
+        text: 'Profesionální catering pro vaše teambuildingy, školení nebo firemní večírky. Zaměřuji se na moderní, lehké pokrmy, které dodají energii a nezatíží. Možnost rautu i servírovaného menu.'
+    },
+    'zamestnanci': {
+        title: 'Zaměstnanecké stravování',
+        text: 'Nabízím přípravu obědů pro menší kolektivy přímo ve vaší firmě. Zdravá a vyvážená strava, která zvyšuje produktivitu a spokojenost v týmu.'
+    },
+    'studena': {
+        title: 'Studená kuchyně',
+        text: 'Luxusní obložené mísy, kanapky, tapas nebo moderní saláty. Vše připraveno s důrazem na detail a vizuální stránku, která ozdobí každou tabuli.'
+    },
+    'b2b': {
+        title: 'B2B Spolupráce',
+        text: 'Potřebujete výpomoc v kuchyni během špičky nebo záskok za kuchaře? Nabízím své 30leté zkušenosti restauracím a cateringovým firmám. Spolupráce na IČO.'
+    }
+};
 
-            // Zavři menu kliknutím mimo
-            document.addEventListener('click', function(e) {
-            const header = document.getElementById('main-header');
-            const hamburger = document.querySelector('.hamburger');
-            const mobileMenu = document.getElementById('mobileMenu');
-            
-            if (!header.contains(e.target)) {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            }
-            });
+function openServiceDetail(serviceKey) {
+    const data = serviceData[serviceKey];
+    if (!data) return;
 
-         //sekce služby
-         const serviceDetails = {
-            'rodinne': {
-                title: 'Rodinné oslavy',
-                content: `
-                    <p>K rodinným oslavám patří stůl plný skvělého jídla a pití, které potěší všechny generace. Navrátíme se k okamžikům, které nás spojují, a vytvoříme nové vzpomínky, které zůstanou navždy v srdci.</p>
-                    <p>Kadý si najde své oblíbené jídlo. Dokážeme uspokojit i nejrůznější dietní požadavky vaší rodiny. Po domluvě zajistíme nejen klasické dezerty včetně bezlepkových a koláče jako od babičky, ale i moderní pochoutky jako okouzlující fontána s ovocnými přízemi. Nikdo tak nezůstane opomenut.[file:1]</p>
-                    <h4>Ukázka menu:</h4>
-                    <div class="offcanvas-menu-example">
-                        <strong>Předkrm:</strong> Pražené mandle, slané pečivo, kanapky nebo jednohubky<br>
-                        <strong>Polévka:</strong> Založená na stůl<br>
-                        <strong>Hlavní chod:</strong> Lokální masové výrobky<br>
-                        <strong>Koláče:</strong> Minizkusek<br>
-                        <strong>Nápoj:</strong> Okouzlující fontána, ovoce
-                    </div>
-                    <p><strong>Kontaktujte mě</strong> pro personalizované menu na vaši oslavu.</p>
-                    <div class="hero-buttons">
-                        <a href="#kontakt" class="btn btn-primary">Poptejte termín</a>
-                    </div>
-                `
-            },
+    document.getElementById('offcanvasTitle').innerText = data.title;
+    document.getElementById('offcanvasBody').innerHTML = `<p>${data.text}</p>`;
     
-          'firemni': {
-                title: 'Rodinné oslavy',
-                content: `
-                    <p>Teambuildingové pohoštění ladím v duchu zdravého životního stylu a lokální udržitelnosti.</p>
-                    <p>Jídlo není jen doplňkem, ale stává se přirozenou součástí programu, která spojuje tým u jednoho stolu.
-</p>
-                    <h4>Ukázka menu:</h4>
-                    <div class="offcanvas-menu-example">
-                        <strong>Předkrm:</strong> Pražené mandle, slané pečivo, kanapky nebo jednohubky<br>
-                        <strong>Polévka:</strong> Založená na stůl<br>
-                        <strong>Hlavní chod:</strong> Lokální masové výrobky<br>
-                        <strong>Koláče:</strong> Minizkusek<br>
-                        <strong>Nápoj:</strong> Okouzlující fontána, ovoce
-                    </div>
-                    <p><strong>Kontaktujte mě</strong> pro personalizované menu na vaši oslavu.</p>
-                    <div class="hero-buttons">
-                        <a href="#kontakt" class="btn btn-primary">Poptejte termín</a>
-                    </div>
-                `
-            },
+    document.getElementById('serviceOffcanvas').classList.add('open');
+    document.getElementById('serviceOverlay').style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Zamezí scrollování webu v pozadí
+}
 
-        };
+function closeServiceDetail() {
+    document.getElementById('serviceOffcanvas').classList.remove('open');
+    document.getElementById('serviceOverlay').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+    function filterGallery(category, btn) {
+    // Aktualizace aktivního tlačítka
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 
-        function openOffcanvas(serviceId) {
-            const panel = document.getElementById('offcanvasPanel');
-            const overlay = document.getElementById('offcanvasOverlay');
-            const title = document.getElementById('offcanvasTitle');
-            const content = document.getElementById('offcanvasContent');
-
-            if (serviceDetails[serviceId]) {
-                title.textContent = serviceDetails[serviceId].title;
-                content.innerHTML = serviceDetails[serviceId].content;
-            }
-
-            panel.classList.add('open');
-            overlay.style.display = 'block';
-            document.body.style.overflow = 'hidden';
+    const items = document.querySelectorAll('.gallery-item');
+    
+    items.forEach(item => {
+        // Pokud je zvoleno 'all' nebo se třída shoduje s kategorií
+        if (category === 'all' || item.classList.contains(category)) {
+            item.classList.remove('hide');
+            item.style.position = 'relative';
+        } else {
+            item.classList.add('hide');
+            // Timeout zajistí, že se prostor uvolní až po doznění animace
+            setTimeout(() => {
+                if (item.classList.contains('hide')) {
+                    item.style.position = 'absolute';
+                }
+            }, 400);
         }
-
-        function closeOffcanvas() {
-            const panel = document.getElementById('offcanvasPanel');
-            const overlay = document.getElementById('offcanvasOverlay');
-            panel.classList.remove('open');
-            overlay.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Zavření Esc klávesou
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeOffcanvas();
-        });  
-        // Swipe to close (mobilní gesture)
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.getElementById('offcanvasPanel').addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        document.getElementById('offcanvasPanel').addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;  // Min. vzdálenost swajpu v px
-            if (touchStartX - touchEndX < swipeThreshold) {
-                closeOffcanvas();
-            }
-        }
-        
-        /*window.addEventListener('resize', adjustHero);
-        function adjustHero() {
-        const header = document.getElementById('main-header');
-        const hero = document.querySelector('.hero');
-        const headerHeight = header.offsetHeight;
-        hero.style.paddingTop = headerHeight + 'px';
-        hero.style.height = 'calc(100vh - ' + headerHeight + 'px)';
-        }
-        adjustHero(); // Spustit ihned*/
-
-    </script>
-
+    });
+    }
+</script>
+    <div id="serviceOverlay" class="service-overlay" onclick="closeServiceDetail()"></div>
+    <div id="serviceOffcanvas" class="service-offcanvas">
+        <div class="offcanvas-header">
+            <h2 id="offcanvasTitle">Detail služby</h2>
+            <button class="close-detail" onclick="closeServiceDetail()">&times;</button>
+        </div>
+        <div id="offcanvasBody" class="offcanvas-body">
+            </div>
+        <div class="offcanvas-footer">
+            <a href="#kontakt" class="btn btn-primary" onclick="closeServiceDetail()">Poptejte tuto službu</a>
+        </div>
+    </div>
+</body>
 </html>
