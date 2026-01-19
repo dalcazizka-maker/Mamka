@@ -473,6 +473,13 @@
                 gap: 1rem;
             }
             }
+            @media (max-width: 600px) {
+    .omne-highlights {
+        grid-template-columns: 1fr; /* Čísla budou pod sebou */
+        text-align: center;
+        gap: 1.5rem;
+    }
+}
 
         
         /* Služby */
@@ -707,7 +714,10 @@
         }
         }
         @media (max-width: 768px) {
-        .hero { height: 100dvh; } /* Plná výška */
+        .hero {
+        height: 80dvh; /* d stands for dynamic - lépe reaguje na lišty prohlížeče */
+        min-height: 500px;
+    }
         .hero-content { 
             flex-direction: column; 
             text-align: center; 
@@ -733,6 +743,14 @@
         }
         .hero-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6)); } /* Tmavší overlay pro text */
         }
+        @media (max-width: 480px) {
+    #main-header .container {
+        padding: 0 15px;
+    }
+    .logo-title {
+        font-size: 1.2rem; /* Zmenšení písma loga, aby se tam vešlo */
+    }
+}
 
       
 
